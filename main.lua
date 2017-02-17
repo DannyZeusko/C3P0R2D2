@@ -4,23 +4,16 @@ local pause = require ('pause')
 local splash = require ('splash')
 verbose = false
 statenumber = 4
-gamestate = {1 = splash.main, 2 = game.main, 3 = pause.main, 4 = nestedfunctest}
+--gamestate = {}
 
 function love.load(arg)
+--  print (splash)
+  --gamestate = {splash.title, game.main, pause.pause, nestedfunctest()}
   if arg and arg[#arg] == "-debug" then require("mobdebug").start() end
   if arg and arg[#arg] == "-v" then verbose = true end 
   myImage = love.graphics.newImage("pumpkin.jpg")
   
   love.window.setMode(1280,720)
-  
-  x = 0
-  y = 0
-  Hero = {}
-  Hero.sprite = nil
-  Hero.x = 0
-  Hero.y = 0
-  
-  
   
 end
 
@@ -44,7 +37,7 @@ function love.update(dt)
     love.window.setFullscreen()  
   end
 
-  gamestate[statenumber]()
+  --gamestate[statenumber]()
 --   hero.x = hero.x - hero.speed*dt
 --  end
 
