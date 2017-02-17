@@ -1,3 +1,7 @@
-function pause()
+self = {}
+
+function self.pause()
 
 end
+
+return self
