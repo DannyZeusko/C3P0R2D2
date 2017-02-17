@@ -1,7 +1,14 @@
 -- from [LÖVE tutorial, part 2](http://www.headchant.com/2010/12/31/love2d-%E2%80%93-tutorial-part-2-pew-pew/)
+local game = require ('game')
+local pause = require ('pause')
+local splash = require ('splash')
+verbose = false
+statenumber = 4
+gamestate = {1 = splash.main, 2 = game.main, 3 = pause.main, 4 = nestedfunctest}
 
 function love.load(arg)
   if arg and arg[#arg] == "-debug" then require("mobdebug").start() end
+  if arg and arg[#arg] == "-v" then verbose = true end 
   myImage = love.graphics.newImage("pumpkin.jpg")
   
   love.window.setMode(1280,720)
@@ -34,8 +41,10 @@ function love.update(dt)
   end
   
   if (love.keyboard.isDown("kp1")) then
-    love.window.setFullscreen()
-    end
+    love.window.setFullscreen()  
+  end
+
+  gamestate[statenumber]()
 --   hero.x = hero.x - hero.speed*dt
 --  end
 
@@ -47,9 +56,13 @@ function love.update(dt)
   -- remove the marked enemies
  -- for i,v in ipairs(remEnemy) do
  --   table.remove(enemies, v)
- -- end
+ -- end 
+end
 
-  
+
+
+function nestedfunctest()
+  print('this works')
 end
 
 function love.draw()
