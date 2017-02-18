@@ -1,6 +1,9 @@
 self = {}
 
-function self.pause()
+function self.main()
+--pause screen logic
+
+print ("pause")
 
 end
 

@@ -1,16 +1,13 @@
--- from [LÖVE tutorial, part 2](http://www.headchant.com/2010/12/31/love2d-%E2%80%93-tutorial-part-2-pew-pew/)
 game = require ('game')
 pause = require ('pause')
 splash = require ('splash')
 
 verbose = false
-statenumber = 4
-gamestate = {}
 
 function love.load(arg)
-  print (splash.main())
-  print (game.main())
-  gamestate = {splash.main, game.main, pause.pause, nestedfunctest()}
+  statenumber = 2 --sets the default gamestate to "in game", set to 1 for release
+
+  gamestate = {splash.main, game.main, pause.pause}
   if arg and arg[#arg] == "-debug" then require("mobdebug").start() end
   if arg and arg[#arg] == "-v" then verbose = true end 
   myImage = love.graphics.newImage("pumpkin.jpg")
@@ -23,7 +20,7 @@ end
 
 
 function love.update(dt)
-  -- keyboard actions for our hero
+  -- keyboard actions for our jpg
   if love.keyboard.isDown("left") then
     x= x-5
   end
@@ -35,40 +32,13 @@ function love.update(dt)
     love.window.setFullscreen()  
   end
 
-  --gamestate[statenumber]()
-  print (gamestate[statenumber])
---   hero.x = hero.x - hero.speed*dt
---  end
+  gamestate[statenumber]() --this passes execution to the main() of whatever state we're in
 
-  --local remEnemy = {}
-  --local remShot = {}
-
-
-
-  -- remove the marked enemies
- -- for i,v in ipairs(remEnemy) do
- --   table.remove(enemies, v)
- -- end 
 end
 
-
-
-function nestedfunctest()
-  print('this works')
-end
 
 function love.draw()
   love.graphics.draw (myImage,x,y,0,1,1,0,0,0,0)
-  -- let's draw a background
-  --love.graphics.setColor(255,255,255,255)
-
-  -- let's draw some ground
-  --love.graphics.setColor(0,255,0,255)
-  --love.graphics.rectangle("fill", 0, 465, 800, 150)
-
-  --for i,v in ipairs(enemies) do
-    --love.graphics.rectangle("fill", v.x, v.y, v.width, v.height)
-  --end
 end
 
 
