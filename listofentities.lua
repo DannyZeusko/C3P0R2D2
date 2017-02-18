@@ -2,18 +2,11 @@
 -- read by an entity factory function in game.main
 
 self ={
-    player = {}, --I have no idea what to put in here yet
-    enemy1 = {},
+    player = {"first thing in player", "second thing in player"}, --populate this list with functions that return lists, which are actually components we want in the player
+    enemy = {},
     enemy2 = {},
     ball = {},
-    pickup = {},
-
-
-
-
-
-
-
+    pickup = {}
 }
 
 return self
