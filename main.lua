@@ -3,7 +3,7 @@ pause = require ('pause')
 splash = require ('splash')
 baton = require ('Assets/baton')
 level01 = require ('Levels/level01')
-mergedControls = require ('mergedControls')
+player = require('player')
 controls = {}
 input = {}
 
@@ -53,6 +53,8 @@ function love.update(dt)
   end
   
   gamestate[statenumber]["main"](dt) --this passes execution to the main() of whatever state we're in
+  
+  player.update()
 
 end
 
@@ -60,6 +62,8 @@ end
 function love.draw()
   --love.graphics.draw (myImage,x,y,0,1,1,0,0,0,0)
   gamestate[statenumber]["draw"]()
+  
+  player.draw()
   
   
 end
