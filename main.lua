@@ -1,6 +1,9 @@
 game = require ('game')
 pause = require ('pause')
 splash = require ('splash')
+baton = require ("Assets/baton")
+controls = {}
+input = {}
 
 verbose = false
 
@@ -15,7 +18,30 @@ function love.load(arg)
   love.window.setMode(1280,720)
   
   x = 0
-  y = 0  
+  y = 0 
+  
+  controls[1] = {
+    left = {'key:d', 'axis:leftx-', 'button:dpleft'},
+    right = {'key:a', 'axis:leftx+', 'button:dpright'},
+    up = {'key:w', 'axis:lefty-', 'button:dpup'},
+    down = {'key:s', 'axis:lefty+', 'button:dpdown'},
+    dash = {'key:x', 'button:a'},
+    attack = {'key:z', 'button:b'}
+  }
+  input[1] = baton.new(controls[1], love.joystick.getJoysticks()[1])
+  print (input[1])
+  print (controls[1])
+  controls[2] = {
+    left = {'key:d', 'axis:leftx-', 'button:dpleft'},
+    right = {'key:a', 'axis:leftx+', 'button:dpright'},
+    up = {'key:w', 'axis:lefty-', 'button:dpup'},
+    down = {'key:d', 'axis:lefty+', 'button:dpdown'},
+    dash = {'key:x', 'button:a'},
+    attack = {'key:z', 'button:b'}
+  }
+  input[2] = baton.new(controls[2], love.joystick.getJoysticks()[2])
+  print (input[2])
+  print (controls[2])
 end
 
 
@@ -28,11 +54,7 @@ function love.update(dt)
     x=x+5
   end
   
-  if (love.keyboard.isDown("kp1")) then
-    love.window.setFullscreen()  
-  end
-
-  gamestate[statenumber]() --this passes execution to the main() of whatever state we're in
+  gamestate[statenumber](dt) --this passes execution to the main() of whatever state we're in
 
 end
 

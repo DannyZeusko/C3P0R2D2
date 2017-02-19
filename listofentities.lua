@@ -1,9 +1,6 @@
 --This file contains no logic, it enumerates which components to put in an entity based on what it's supposed to be
 -- read by an entity factory function in game.main
 local example = require("components/exampleComponent")
-local components = require ("components/")
-
-
 
 
 self ={

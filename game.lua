@@ -2,22 +2,31 @@ self = {}
 local list = require ("listofentities")
 local this = self
 
-entities = {}--dumb hardcoded entities because we're going to have like 4 types. No big deal
+entities = {}--dumb hardcoded entities because we're going to have like 4 types. 
+entityCount = 0 -- first 2 entities to be created must be players for a variety ofreasons
 
-function self.main ()
+function self.main (dt)
     -- main logic loop for the game
+
+if (love.keyboard.isDown("kp1")) then
+    this.composeEntity("player1") 
+end
+    for i = 1, entityCount do
+        entities[i]["update"](dt)
+    end
     
-
-
-    this.composeEntity("player")
 end
 
-function self.composeEntity (entityType)    
-    for func in pairs(list[entityType]) do
-        --print (list[entityType][1])
-        local test = list[entityType][1]()
-        test["update"]()
-    end
+function self.composeEntity (type)   
+    entityCount = entityCount + 1
+    entities[entityCount] = require ("Entities/Entity")
+    entities[entityCount]["spriteUp"]  = love.graphics.newImage("Assets/Player.png")
+    entities[entityCount]["spriteDown"] = love.graphics.newImage("Assets/Player.png") 
+
+    if type == "player1" then
+        entities[entityCount]["is_player"] = true
+        entities[entityCount]["player"] = 1   
+    end   
 end
 
 return self
