@@ -1,7 +1,9 @@
 game = require ('game')
 pause = require ('pause')
 splash = require ('splash')
-baton = require ("Assets/baton")
+baton = require ('Assets/baton')
+level01 = require ('Levels/level01')
+mergedControls = require ('mergedControls')
 controls = {}
 input = {}
 
@@ -58,6 +60,9 @@ end
 function love.draw()
   --love.graphics.draw (myImage,x,y,0,1,1,0,0,0,0)
   gamestate[statenumber]["draw"]()
+  level01.draw()
+  
+  
 end
 
 
