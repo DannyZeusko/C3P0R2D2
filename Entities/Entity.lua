@@ -8,9 +8,9 @@ self.speedx = {}
 self.speedy = {}
 self.speed = {}
 
-self.spriteUp = {}
+self.spriteUp = {} --temp values will replace for a more comprehensive solution later
 self.spriteDown = {}
-self.facing = 1.0
+self.facing = {}
 
 self.is_player = {}
 self.player = {}
@@ -21,45 +21,45 @@ self.is_ball = {}
 self.bal_thrown = {}
 
 
-function self.enemyMove()
+function self.enemyMove(which)
     
 end
 
-function self.playerMove()
+function self.playerMove(which)
 
 
 end
 
-function self.ballMove()
+function self.ballMove(which)
 
 end
 
-function self.throwBall()
+function self.throwBall(which)
 
 end
 
-function self.update(dt)
-    if self.is_player == true then
-        input[self.player]:update()
-        for control in pairs(controls[self.player]) do
-            if input[self.player]:pressed(control) then
-                if control == "left" then self.speedx = self.speed end
-                if control == "right" then self.speedx = -self.speed end
-                if control == "down" then self.speedy = self.speed end
-                if control == "up" then self.speedy = -self.speed end
+function self.update(which, dt)
+    if self.is_player[which] == true then
+        input[self.player[which]]:update()
+        for control in pairs(controls[self.player[which]]) do
+            if input[self.player[which]]:pressed(control) then
+                if control == "left" then self.speedx[which] = self.speed[which] end
+                if control == "right" then self.speedx[which] = -self.speed[which] end
+                if control == "down" then self.speedy[which] = self.speed[which] end
+                if control == "up" then self.speedy[which] = -self.speed[which] end
                 if control == "dash" then 
-                    self.speedx = self.speedx * 2 
-                    self.speedy = self.speedy * 2    
+                    self.speedx[which] = self.speedx[which] * 2 
+                    self.speedy[which] = self.speedy[which] * 2    
                 end
             end
-            if input[self.player]:released(control) then
-                if control == "left" then self.speedx = 0 end
-                if control == "right" then self.speedx = 0 end
-                if control == "down" then self.speedy = 0 end
-                if control == "up" then self.speedy = 0 end
+            if input[self.player[which]]:released(control) then
+                if control == "left" then self.speedx[which] = 0 end
+                if control == "right" then self.speedx[which] = 0 end
+                if control == "down" then self.speedy[which] = 0 end
+                if control == "up" then self.speedy[which] = 0 end
                 if control == "dash" then 
-                    self.speedx = self.speedx / 2 
-                    self.speedy = self.speedy / 2 
+                    self.speedx[which] = self.speedx[which] / 2 
+                    self.speedy[which] = self.speedy[which] / 2 
                 end
             end
         end
@@ -74,15 +74,13 @@ function self.update(dt)
 
     end
 
-    self.x = self.x + self.speedx * dt
-    self.y = self.y + self.speedy * dt
+    self.x[which] = self.x[which] + self.speedx[which] * dt
+    self.y[which] = self.y[which] + self.speedy[which] * dt
 
 end
 
-function self.draw()
-    print(self)
-    print(self.spriteDown)
-    love.graphics.draw (self.spriteDown,self.x,self.y,0,self.facing,1,0,0,0,0)
+function self.draw(which)
+    love.graphics.draw (self.spriteDown[which],self.x[which],self.y[which],0,self.facing[which],1,0,0,0,0)
 end
 
 return self
