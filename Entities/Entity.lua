@@ -1,5 +1,5 @@
 self = {} -- after some consideration, and in the absence fo any way to do inheritence or polymorphism quickly, 
-          -- We should make one object type that has litterally all logic and state that any object in the game can have
+         -- We should make one object type that has litterally all logic and state that any object in the game can have
 
 
 self.x = 0.0 
@@ -80,6 +80,7 @@ function self.update(dt)
 end
 
 function self.draw()
+    print(self)
     love.graphics.draw (self.spriteDown,self.x,self.y,0,self.facing,1,0,0,0,0)
 end
 

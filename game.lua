@@ -21,6 +21,7 @@ end
 end
 
 function self.draw()
+    level01.draw()
     for i = 1, entityCount do
         entities[i]["draw"]()
     end
@@ -28,15 +29,19 @@ end
 
 function self.composeEntity (type)   -- requires a deep copy of Entity for truely new instance, otherwise all entities will be references to one object
     entityCount = entityCount + 1
-    local template = require ("Entities/Entity")
-    local temp = {}
+    --local template = require ("Entities/Entity")
+    ---local temp = {}
     --for i, #template do
 
     --end
 
-    entities[entityCount] = require ("Entities/Entity")
+    --entities[entityCount] = require ("Entities/Entity")
+    entities[entityCount] = this.deepCopy(require ("Entities/Entity"))
+    print (require ("Entities/Entity"))
+    entities[entityCount]["self"] = entities[entityCount]
     entities[entityCount]["spriteUp"]  = love.graphics.newImage("Assets/Player.png")
     entities[entityCount]["spriteDown"] = love.graphics.newImage("Assets/Player.png") 
+    print(entities[entityCount])
 
     if type == "player1" then
         entities[entityCount]["is_player"] = true
@@ -46,6 +51,17 @@ function self.composeEntity (type)   -- requires a deep copy of Entity for truel
         entities[entityCount]["is_player"] = true
         entities[entityCount]["player"] = 2   
     end     
+end
+
+function self.deepCopy(original)
+    local copy = {}
+    for k, v in pairs(original) do
+        if type(v) == 'table' then
+            v = deepCopy(v)
+        end
+        copy[k] = v
+    end
+    return copy
 end
 
 return self

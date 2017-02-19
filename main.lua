@@ -60,7 +60,6 @@ end
 function love.draw()
   --love.graphics.draw (myImage,x,y,0,1,1,0,0,0,0)
   gamestate[statenumber]["draw"]()
-  level01.draw()
   
   
 end
