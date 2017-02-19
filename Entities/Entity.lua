@@ -80,6 +80,7 @@ function self.update(which, dt)
 end
 
 function self.draw(which)
+    print(which)
     love.graphics.draw (this.spriteDown[which],this.x[which],this.y[which],0,this.facing[which],1,0,0,0,0)
 end
 
