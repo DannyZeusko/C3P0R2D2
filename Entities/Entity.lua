@@ -6,7 +6,7 @@ self.x = 0.0
 self.y = 0.0
 self.speedx = 0.0
 self.speedy = 0.0
-self.allowedSpeed = 5.0
+self.speed = 15.0
 
 self.spriteUp = nil
 self.spriteDown = nil
@@ -43,10 +43,24 @@ function self.update(dt)
         input[self.player]:update()
         for control in pairs(controls[self.player]) do
             if input[self.player]:pressed(control) then
-                print(control, 'pressed')
+                if control == "left" then self.speedx = self.speed end
+                if control == "right" then self.speedx = -self.speed end
+                if control == "down" then self.speedy = self.speed end
+                if control == "up" then self.speedy = -self.speed end
+                if control == "dash" then 
+                    self.speedx = self.speedx * 2 
+                    self.speedy = self.speedy * 2    
+                end
             end
             if input[self.player]:released(control) then
-                print(control, 'released')
+                if control == "left" then self.speedx = 0 end
+                if control == "right" then self.speedx = 0 end
+                if control == "down" then self.speedy = 0 end
+                if control == "up" then self.speedy = 0 end
+                if control == "dash" then 
+                    self.speedx = self.speedx / 2 
+                    self.speedy = self.speedy / 2 
+                end
             end
         end
     end
@@ -60,8 +74,13 @@ function self.update(dt)
 
     end
 
+    self.x = self.x + self.speedx * dt
+    self.y = self.y + self.speedy * dt
+
 end
 
-
+function self.draw()
+    love.graphics.draw (self.spriteDown,self.x,self.y,0,self.facing,1,0,0,0,0)
+end
 
 return self

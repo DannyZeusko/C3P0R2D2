@@ -10,7 +10,7 @@ verbose = false
 function love.load(arg)
   statenumber = 2 --sets the default gamestate to "in game", set to 1 for release
 
-  gamestate = {splash.main, game.main, pause.pause}
+  gamestate = {splash, game, pause}
   if arg and arg[#arg] == "-debug" then require("mobdebug").start() end
   if arg and arg[#arg] == "-v" then verbose = true end 
   myImage = love.graphics.newImage("pumpkin.jpg")
@@ -54,13 +54,14 @@ function love.update(dt)
     x=x+5
   end
   
-  gamestate[statenumber](dt) --this passes execution to the main() of whatever state we're in
+  gamestate[statenumber]["main"](dt) --this passes execution to the main() of whatever state we're in
 
 end
 
 
 function love.draw()
-  love.graphics.draw (myImage,x,y,0,1,1,0,0,0,0)
+  --love.graphics.draw (myImage,x,y,0,1,1,0,0,0,0)
+  gamestate[statenumber]["draw"]()
 end
 
 

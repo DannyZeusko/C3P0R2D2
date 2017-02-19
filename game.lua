@@ -17,6 +17,12 @@ end
     
 end
 
+function self.draw()
+    for i = 1, entityCount do
+        entities[i]["draw"]()
+    end
+end
+
 function self.composeEntity (type)   
     entityCount = entityCount + 1
     entities[entityCount] = require ("Entities/Entity")

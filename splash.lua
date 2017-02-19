@@ -7,4 +7,8 @@ print ("splash")
 
 end
 
+function self.draw()
+
+end
+
 return self

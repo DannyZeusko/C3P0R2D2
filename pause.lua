@@ -7,4 +7,8 @@ print ("pause")
 
 end
 
+function self.draw()
+
+end
+
 return self
