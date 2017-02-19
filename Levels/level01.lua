@@ -16,6 +16,7 @@ local t = {02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 0
          
 local tileSet = love.graphics.newImage("Assets/Tiles01.png") 
 local image = {}
+local roomWidth = 20  -- this is used by the tile drawing code
 
   for i=1,8,1  do 
   image[i] = love.graphics.newQuad((i-1)*64,0,64,64,tileSet:getDimensions() )
@@ -28,7 +29,7 @@ function self.draw ()
 
   for i=1,tablelength(t),1  do 
      --love.graphics.draw(tileSet,image[01],  (i-1)*64 - (math.floor((i-1)/10)*640)    ,   (math.floor((i-1)/10)*64)    ,   0,   1,    1,   0  ,   0   , 0 , 0)
-     love.graphics.draw(tileSet,image[t[i]],  (i-1)*64 - (math.floor((i-1)/20)*64*20)    ,   (math.floor((i-1)/20)*64)    ,   0,   1,    1,   0  ,   0   , 0 , 0)
+     love.graphics.draw(tileSet,image[t[i]],  (i-1)*64 - (math.floor((i-1)/roomWidth)*64*roomWidth)    ,   (math.floor((i-1)/roomWidth)*64)    ,   0,   1,    1,   0  ,   0   , 0 , 0)
      --love.graphics.draw(tileSet,0,0)
   end
 
