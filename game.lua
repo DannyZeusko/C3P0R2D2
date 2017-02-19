@@ -1,12 +1,16 @@
 self = {}
+local list = require ("listofentities")
 local this = self
-local Entity = require ("Entities/Entity")
 
+
+Entity = require ("Entities/Entity")
+entities = {}--dumb hardcoded entities because we're going to have like 4 types. 
 entityCount = 0 -- first 2 entities to be created must be players for a variety ofreasons
+print (Entity)
 
 function self.main (dt)
     -- main logic loop for the game
-
+print (this.composeEntity2)
 if (love.keyboard.isDown("kp1")) then
     this.composeEntity2("player1") 
 end
@@ -14,19 +18,19 @@ if (love.keyboard.isDown("kp2")) then
     this.composeEntity2("player2") 
 end
     for i = 1, entityCount do
-        entities[i]["update"](dt)
+        Entity["update"](i, dt)
     end
     
 end
 
 function self.draw()
-    level01.draw()
+    --level01.draw()
     for i = 1, entityCount do
-        Entity[i]["draw"](i)
+        Entity["draw"](i)
     end
 end
 
-function self.composeEntity2 (type) --this spawns one instance of Entity, which now has lists for state
+function this.composeEntity2 (type) --this spawns one instance of Entity, which now has lists for state
     entityCount = entityCount + 1                                -- this function will set default values for state based on the type parameter
     if type == "player1" then
         Entity.x[entityCount] = 0.0 
@@ -42,26 +46,17 @@ function self.composeEntity2 (type) --this spawns one instance of Entity, which 
         Entity.is_enemy[entityCount] = false
         Entity.has_ball[entityCount] = false
         Entity.is_ball[entityCount] = false
-        Entity.bal_thrown[entityCount] = false
+        Entity.ball_thrown[entityCount] = false
     end
 
 
 end
-
+print (self.composeEntity2)
 function self.composeEntity (type)   -- requires a deep copy of Entity for truely new instance, otherwise all entities will be references to one object
     entityCount = entityCount + 1
-    --local template = require ("Entities/Entity")
-    ---local temp = {}
-    --for i, #template do
-
-    --end
-
-    --entities[entityCount] = require ("Entities/Entity")
-    entities[entityCount] = this.deepCopy(require ("Entities/Entity"))
-    print (require ("Entities/Entity"))
+    entities[entityCount] = require ("Entities/Entity")
     entities[entityCount]["spriteUp"]  = love.graphics.newImage("Assets/Player.png")
     entities[entityCount]["spriteDown"] = love.graphics.newImage("Assets/Player.png") 
-    print(entities[entityCount])
 
     if type == "player1" then
         entities[entityCount]["is_player"] = true
@@ -71,17 +66,6 @@ function self.composeEntity (type)   -- requires a deep copy of Entity for truel
         entities[entityCount]["is_player"] = true
         entities[entityCount]["player"] = 2   
     end     
-end
-
-function self.deepCopy(original)
-    local copy = {}
-    for k, v in pairs(original) do
-        if type(v) == 'table' then
-            v = this.deepCopy(v)
-        end
-        copy[k] = v
-    end
-    return copy
 end
 
 return self
