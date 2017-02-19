@@ -29,8 +29,6 @@ function love.load(arg)
     attack = {'key:z', 'button:b'}
   }
   input[1] = baton.new(controls[1], love.joystick.getJoysticks()[1])
-  print (input[1])
-  print (controls[1])
   controls[2] = {
     left = {'key:d', 'axis:leftx-', 'button:dpleft'},
     right = {'key:a', 'axis:leftx+', 'button:dpright'},
@@ -40,8 +38,6 @@ function love.load(arg)
     attack = {'key:z', 'button:b'}
   }
   input[2] = baton.new(controls[2], love.joystick.getJoysticks()[2])
-  print (input[2])
-  print (controls[2])
 end
 
 
