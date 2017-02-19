@@ -9,24 +9,24 @@ entityCount = 0 -- first 2 entities to be created must be players for a variety 
 
 function self.main (dt)
     -- main logic loop for the game
-if (love.keyboard.isDown("kp1")) then
+print ("gameupdateS")
+if (love.keyboard.isDown("kp1")) and entityCount < 1 then
     this.composeEntity2("player1") 
 end
-if (love.keyboard.isDown("kp2")) then
-    this.composeEntity2("player2") 
-end
+--if (love.keyboard.isDown("kp2")) then
+--    this.composeEntity2("player2") 
+--end
     for i = 1, entityCount do
         Entity["update"](i, dt)
-        print (i)
+        print ("Updating an entity")
     end
     
 end
 
 function self.draw()
-    --level01.draw()
+    level01.draw()
     for i = 1, entityCount do
-        print (Entity.spriteDown[1])
-        Entity["draw"](i)
+        love.graphics.draw (Entity["spriteDown"][i],Entity["x"][i],Entity["y"][i],0,Entity["facing"][1],1,0,0,0,0)
     end
 end
 
@@ -38,8 +38,8 @@ function this.composeEntity2 (type) --this spawns one instance of Entity, which 
         Entity.speedx[entityCount] = 0.0
         Entity.speedy[entityCount] = 0.0
         Entity.speed[entityCount] = 30.0
-        Entity.spriteUp[entityCount] = love.graphics.newImage("Assets/Player.png") --temp values will replace for a more comprehensive solution later
-        Entity.spriteDown[entityCount] = love.graphics.newImage("Assets/Player.png")
+        Entity.spriteUp[entityCount] = love.graphics.newImage("Assets/rhead.png") --temp values will replace for a more comprehensive solution later
+        Entity.spriteDown[entityCount] = love.graphics.newImage("Assets/rhead.png")
         Entity.facing[entityCount] = 1.0
         Entity.is_player[entityCount] = true
         Entity.player[entityCount] = 1
@@ -54,8 +54,8 @@ function this.composeEntity2 (type) --this spawns one instance of Entity, which 
         Entity.speedx[entityCount] = 0.0
         Entity.speedy[entityCount] = 0.0
         Entity.speed[entityCount] = 30.0
-        Entity.spriteUp[entityCount] = love.graphics.newImage("Assets/Player.png") --temp values will replace for a more comprehensive solution later
-        Entity.spriteDown[entityCount] = love.graphics.newImage("Assets/Player.png")
+        Entity.spriteUp[entityCount] = love.graphics.newImage("Assets/rhead.png") --temp values will replace for a more comprehensive solution later
+        Entity.spriteDown[entityCount] = love.graphics.newImage("Assets/rhead.png")
         Entity.facing[entityCount] = 1.0
         Entity.is_player[entityCount] = true
         Entity.player[entityCount] = 2
@@ -67,8 +67,7 @@ function this.composeEntity2 (type) --this spawns one instance of Entity, which 
 
 
 end
-print (self.composeEntity2)
-function self.composeEntity (type)   -- requires a deep copy of Entity for truely new instance, otherwise all entities will be references to one object
+function self.composeEntity (type)   -- depreciated
     entityCount = entityCount + 1
     entities[entityCount] = require ("Entities/Entity")
     entities[entityCount]["spriteUp"]  = love.graphics.newImage("Assets/Player.png")
