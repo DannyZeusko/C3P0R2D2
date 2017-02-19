@@ -6,7 +6,7 @@ self.x = 0.0
 self.y = 0.0
 self.speedx = 0.0
 self.speedy = 0.0
-self.speed = 15.0
+self.speed = 30.0
 
 self.spriteUp = nil
 self.spriteDown = nil
