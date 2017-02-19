@@ -38,7 +38,7 @@ function self.composeEntity (type)   -- requires a deep copy of Entity for truel
     --entities[entityCount] = require ("Entities/Entity")
     entities[entityCount] = this.deepCopy(require ("Entities/Entity"))
     print (require ("Entities/Entity"))
-    entities[entityCount]["self"] = entities[entityCount]
+    entities[entityCount]["this"] = entities[entityCount]
     entities[entityCount]["spriteUp"]  = love.graphics.newImage("Assets/Player.png")
     entities[entityCount]["spriteDown"] = love.graphics.newImage("Assets/Player.png") 
     print(entities[entityCount])
@@ -57,7 +57,7 @@ function self.deepCopy(original)
     local copy = {}
     for k, v in pairs(original) do
         if type(v) == 'table' then
-            v = deepCopy(v)
+            v = this.deepCopy(v)
         end
         copy[k] = v
     end
