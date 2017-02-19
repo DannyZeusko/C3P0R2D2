@@ -18,7 +18,7 @@ local tileSet = love.graphics.newImage("Assets/Tiles01.png")
 local image = {}
 local roomWidth = 20  -- this is used by the tile drawing code
 
-  for i=1,8,1  do 
+  for i=1,8  do 
   image[i] = love.graphics.newQuad((i-1)*64,0,64,64,tileSet:getDimensions() )
   end
 
