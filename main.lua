@@ -42,8 +42,8 @@ function love.load(arg)
     left = {'key:right', 'axis:leftx-', 'button:dpright'},
     up = {'key:up', 'axis:lefty-', 'button:dpup'},
     down = {'key:down', 'axis:lefty+', 'button:dpdown'},
-    dash = {'key:x', 'button:a'},
-    attack = {'key:z', 'button:b'},
+    dash = {'key:.', 'button:a'},
+    attack = {'key:,', 'button:b'},
     start = {'key:escape', 'button:start'}
   }
   input[2] = baton.new(controls[2], love.joystick.getJoysticks()[2])

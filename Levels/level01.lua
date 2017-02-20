@@ -27,7 +27,7 @@ local roomWidth = 20  -- this is used by the tile drawing code
 
 function self.draw ()
 
-  for i=1,tablelength(t),1  do 
+  for i=1,#t,1  do 
      --love.graphics.draw(tileSet,image[01],  (i-1)*64 - (math.floor((i-1)/10)*640)    ,   (math.floor((i-1)/10)*64)    ,   0,   1,    1,   0  ,   0   , 0 , 0)
      love.graphics.draw(tileSet,image[t[i]],  (i-1)*64 - (math.floor((i-1)/roomWidth)*64*roomWidth)    ,   (math.floor((i-1)/roomWidth)*64)    ,   0,   1,    1,   0  ,   0   , 0 , 0)
      --love.graphics.draw(tileSet,0,0)

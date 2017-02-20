@@ -41,7 +41,7 @@ function this.composeEntity2 (type) --this spawns one instance of Entity, which 
         Entity.y[entityCount] = 0.0
         Entity.speedx[entityCount] = 0.0
         Entity.speedy[entityCount] = 0.0
-        Entity.speed[entityCount] = 30.0
+        Entity.speed[entityCount] = 60.0
         Entity.spriteUp[entityCount] = love.graphics.newImage("Assets/rhead.png") --temp values will replace for a more comprehensive solution later
         Entity.spriteDown[entityCount] = love.graphics.newImage("Assets/rhead.png")
         Entity.facing[entityCount] = 1.0
@@ -57,7 +57,7 @@ function this.composeEntity2 (type) --this spawns one instance of Entity, which 
         Entity.y[entityCount] = 0.0
         Entity.speedx[entityCount] = 0.0
         Entity.speedy[entityCount] = 0.0
-        Entity.speed[entityCount] = 30.0
+        Entity.speed[entityCount] = 60.0
         Entity.spriteUp[entityCount] = love.graphics.newImage("Assets/rhead.png") --temp values will replace for a more comprehensive solution later
         Entity.spriteDown[entityCount] = love.graphics.newImage("Assets/rhead.png")
         Entity.facing[entityCount] = 1.0
