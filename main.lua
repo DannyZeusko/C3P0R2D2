@@ -2,7 +2,7 @@ game = require ('game')
 pause = require ('pause')
 splash = require ('splash')
 baton = require ('Assets/baton')
---levelHandler = require ('Levels/level01')
+--levelHandler = require ('LevelHandler')
 level01 = require ('Levels/level01')
 gamera = require('Assets/gamera')
 cam = gamera.new(0,0,1280,780)
@@ -15,18 +15,14 @@ Player2 = {x = 0.0, y = 0.0, speedx = 0.0, speedy = 0.0}
 verbose = false
 
 function love.load(arg)
-  statenumber = 2 --sets the default gamestate to "in game", set to 1 for release
+  state = 2 --sets the default gamestate to "in game", set to 1 for release
 
   gamestate = {splash, game, pause}
   if arg and arg[#arg] == "-debug" then require("mobdebug").start() end
   if arg and arg[#arg] == "-v" then verbose = true end 
-  myImage = love.graphics.newImage("pumpkin.jpg")
   
   love.window.setMode(1280,720)
   cam:setWindow(0,0,1280,720)
-  
-  x = 0
-  y = 0 
   
   controls[1] = {
     left = {'key:d', 'axis:leftx+', 'button:dpleft'},
@@ -51,32 +47,13 @@ function love.load(arg)
 end
 
 
-function love.update(dt)
-  -- keyboard actions for our jpg
-  if love.keyboard.isDown("left") then
-    x= x-5
-  end
-  if love.keyboard.isDown("right") then
-    x=x+5
-  end
-  
-  gamestate[statenumber]["main"](dt) --this passes execution to the main() of whatever state we're in
-  
-  --player.update()
-
+function love.update(dt) 
+  gamestate[state]["main"](dt) --this passes execution to the main() of whatever state we're in
 end
 
 
 function love.draw()
-  --love.graphics.draw (myImage,x,y,0,1,1,0,0,0,0)
-
-
-  cam:draw(function(l,t,w,h)
-    gamestate[statenumber]["draw"]()
-  end)
-  --gamestate[statenumber]["draw"]()
-  
-  
+  gamestate[state]["draw"]()
 end
 
 

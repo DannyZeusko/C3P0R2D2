@@ -1,5 +1,4 @@
 self = {}
-local list = require ("listofentities")
 local this = self
 
 
@@ -31,11 +30,13 @@ function self.draw()
 
     cam:setPosition(Player1["x"] + Player2["x"] / 2, Player1["y"] + Player2["y"] / 2)
 
-    level01.draw()
-    for i = 1, entityCount do
-        love.graphics.setColor( Entity["colour"][i]['r'], Entity["colour"][i]['g'], Entity["colour"][i]['b'], Entity["colour"][i]['a'] )
-        love.graphics.draw (Entity["headDown"][i],Entity["x"][i],Entity["y"][i],0,Entity["facing"][1],1,0,0,0,0)
-    end
+    cam:draw(function(l,t,w,h)
+        level01.draw()
+        for i = 1, entityCount do
+            love.graphics.setColor( Entity["colour"][i]['r'], Entity["colour"][i]['g'], Entity["colour"][i]['b'], Entity["colour"][i]['a'] )
+            love.graphics.draw (Entity["headDown"][i],Entity["x"][i],Entity["y"][i],0,Entity["facing"][1],1,0,0,0,0)
+        end
+    end)
 end
 
 function this.composeEntity2 (type) --this spawns one instance of Entity, which now has lists for state
