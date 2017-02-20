@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="100" tilewidth="64" tileheight="64" nextobjectid="31">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="100" tilewidth="64" tileheight="64" nextobjectid="36">
  <tileset firstgid="1" name="AndyTile" tilewidth="64" tileheight="64" tilecount="256" columns="16">
-  <image source="Tiles01.png" width="1024" height="1024"/>
+  <image source="../Assets/Tiles01.png" width="1024" height="1024"/>
  </tileset>
  <layer name="Tiles" width="30" height="100">
   <data encoding="csv">
@@ -103,15 +103,12 @@
 2,7,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,8,2,7,3,3,3,3,8,2,
 2,7,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,8,2,7,3,3,3,3,8,2,
 2,7,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,8,2,7,3,3,3,3,8,2,
-2,7,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,8,2,7,3,3,3,3,8,2,
-2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4
 </data>
  </layer>
  <objectgroup name="Colliders">
   <object id="2" x="0" y="0" width="1920" height="64"/>
-  <object id="3" x="1856" y="64" width="64" height="6272"/>
-  <object id="4" x="0" y="64" width="64" height="6272"/>
-  <object id="5" x="0" y="6336" width="1920" height="64"/>
   <object id="6" x="64" y="2048" width="384" height="64"/>
   <object id="7" x="640" y="2048" width="576" height="64"/>
   <object id="8" x="1408" y="2048" width="448" height="64"/>
@@ -135,6 +132,9 @@
   <object id="27" x="832" y="4032" width="64" height="64"/>
   <object id="28" x="64" y="4480" width="832" height="64"/>
   <object id="29" x="1152" y="4480" width="704" height="64"/>
-  <object id="30" x="1408" y="5056" width="64" height="1280"/>
+  <object id="32" x="0" y="6272" width="1920" height="128"/>
+  <object id="33" x="1408" y="5056" width="64" height="1216"/>
+  <object id="34" x="1856" y="64" width="64" height="6208"/>
+  <object id="35" x="0" y="64" width="64" height="6208"/>
  </objectgroup>
 </map>

@@ -40,9 +40,7 @@ end
 function self.prepquads(new)
   level = new
   for tset = 1, #map.tilesets do
-	
 		tilesetImage[tset] = love.graphics.newImage( "Map/"..map.tilesets[tset].image)
-		
 		repeat                -- get current image's number of tiles wide. Find more efficeint way to do this in the future. math.floor
 			i = i + map.tilesets[tset].tilewidth
 			tilesetX = tilesetX + 1

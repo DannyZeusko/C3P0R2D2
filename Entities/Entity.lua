@@ -8,9 +8,16 @@ self.speedx = {}
 self.speedy = {}
 self.speed = {}
 
-self.spriteUp = {} --temp values will replace for a more comprehensive solution later
-self.spriteDown = {}
+self.headUp = {} --temp values will replace for a more comprehensive solution later
+self.headDown = {}
+self.bodyUp = {} 
+self.bodyDown = {}
+self.rarm = {} 
+self.rhand = {}
+self.bottom = {} 
+self.offset = {}
 self.facing = {}
+self.colour = {}
 
 self.is_player = {}
 self.player = {}
