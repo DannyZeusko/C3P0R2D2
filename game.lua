@@ -9,13 +9,14 @@ entityCount = 0 -- first 2 entities to be created must be players for a variety 
 
 function self.main (dt)
     -- main logic loop for the game
-print ("gameupdateS")
-if (love.keyboard.isDown("kp1")) and entityCount < 1 then
-    this.composeEntity2("player1") 
-end
---if (love.keyboard.isDown("kp2")) then
---    this.composeEntity2("player2") 
---end
+
+    if (love.keyboard.isDown("kp1")) and entityCount < 1 then
+        this.composeEntity2("player1") 
+    end
+    if (love.keyboard.isDown("kp2")) and entityCount == 1 then
+        this.composeEntity2("player2")  
+    end
+
     for i = 1, entityCount do
         Entity["update"](i, dt)
         print ("Updating an entity")
@@ -24,6 +25,9 @@ end
 end
 
 function self.draw()
+
+    cam:setPosition(Player1["x"] + Player2["x"] / 2, Player1["y"] + Player2["y"] / 2)
+
     level01.draw()
     for i = 1, entityCount do
         love.graphics.draw (Entity["spriteDown"][i],Entity["x"][i],Entity["y"][i],0,Entity["facing"][1],1,0,0,0,0)

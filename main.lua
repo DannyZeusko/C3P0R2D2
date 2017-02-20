@@ -3,9 +3,13 @@ pause = require ('pause')
 splash = require ('splash')
 baton = require ('Assets/baton')
 level01 = require ('Levels/level01')
-player = require('player')
+gamera = require('Assets/gamera')
+cam = gamera.new(0,0,1280,780)
 controls = {}
 input = {}
+
+Player1 = {x = 0.0, y = 0.0, speedx = 0.0, speedy = 0.0} --readonly, globally available player stats
+Player2 = {x = 0.0, y = 0.0, speedx = 0.0, speedy = 0.0}
 
 verbose = false
 
@@ -18,6 +22,7 @@ function love.load(arg)
   myImage = love.graphics.newImage("pumpkin.jpg")
   
   love.window.setMode(1280,720)
+  cam:setWindow(0,0,1280,720)
   
   x = 0
   y = 0 
@@ -28,16 +33,18 @@ function love.load(arg)
     up = {'key:w', 'axis:lefty-', 'button:dpup'},
     down = {'key:s', 'axis:lefty+', 'button:dpdown'},
     dash = {'key:x', 'button:a'},
-    attack = {'key:z', 'button:b'}
+    attack = {'key:z', 'button:b'},
+    start = {'key:escape', 'button:start'}
   }
   input[1] = baton.new(controls[1], love.joystick.getJoysticks()[1])
   controls[2] = {
-    left = {'key:left', 'axis:leftx+', 'button:dpleft'},
-    right = {'key:right', 'axis:leftx-', 'button:dpright'},
+    right = {'key:left', 'axis:leftx+', 'button:dpleft'},
+    left = {'key:right', 'axis:leftx-', 'button:dpright'},
     up = {'key:up', 'axis:lefty-', 'button:dpup'},
     down = {'key:down', 'axis:lefty+', 'button:dpdown'},
     dash = {'key:x', 'button:a'},
-    attack = {'key:z', 'button:b'}
+    attack = {'key:z', 'button:b'},
+    start = {'key:escape', 'button:start'}
   }
   input[2] = baton.new(controls[2], love.joystick.getJoysticks()[2])
 end
@@ -54,16 +61,19 @@ function love.update(dt)
   
   gamestate[statenumber]["main"](dt) --this passes execution to the main() of whatever state we're in
   
-  player.update()
+  --player.update()
 
 end
 
 
 function love.draw()
   --love.graphics.draw (myImage,x,y,0,1,1,0,0,0,0)
-  gamestate[statenumber]["draw"]()
-  
-  player.draw()
+
+
+  cam:draw(function(l,t,w,h)
+    gamestate[statenumber]["draw"]()
+  end)
+  --gamestate[statenumber]["draw"]()
   
   
 end

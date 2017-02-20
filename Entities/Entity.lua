@@ -76,6 +76,11 @@ function self.update(which, dt)
 
     this.x[which] = this.x[which] + this.speedx[which] * dt
     this.y[which] = this.y[which] + this.speedy[which] * dt
+    if this.player[which] == 1 then
+        Player1 = {x = this.x[which], y = this.y[which], speedx = this.speedx[which], speedy = this.speedy[which]}
+    else
+        Player2 = {x = this.x[which], y = this.y[which], speedx = this.speedx[which], speedy = this.speedy[which]}
+    end
 
 end
 
