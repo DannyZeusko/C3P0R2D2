@@ -2,7 +2,7 @@ game = require ('game')
 pause = require ('pause')
 splash = require ('splash')
 baton = require ('Assets/baton')
---levelHandler = require ('LevelHandler')
+levelHandler = require ('LevelHandler')
 level01 = require ('Levels/level01')
 gamera = require('Assets/gamera')
 cam = gamera.new(0,0,1280,780)
@@ -18,8 +18,6 @@ function love.load(arg)
   state = 2 --sets the default gamestate to "in game", set to 1 for release
 
   gamestate = {splash, game, pause}
-  if arg and arg[#arg] == "-debug" then require("mobdebug").start() end
-  if arg and arg[#arg] == "-v" then verbose = true end 
   
   love.window.setMode(1280,720)
   cam:setWindow(0,0,1280,720)
